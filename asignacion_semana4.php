@@ -41,9 +41,16 @@ th { background-color: #e0e0e0; }
 $curso = $_GET['curso'] ?? "";
 
 //??: Es un "operador de fusión de nulo". Si no hay nada en la URL, le asigna un texto vacío para evitar que el programa de un error.
+// es una versión corta de : if (isset($_GET['curso'])) {
+                                            //$curso = $_GET['curso'];
+                                            //} else {
+                                            //$curso = "";
+                                            //}
+//que para mi es más fácil de recordar y comprender.
+
 
 if ($curso != "") {
-
+//lo siguiente solo se ejecuta si el curso existe:
     $sql = "SELECT * FROM Estudiantes WHERE curso = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$curso]);
@@ -51,9 +58,9 @@ if ($curso != "") {
     $resultados = $stmt->fetchAll();
 
 
-    if (count($resultados) > 0) {
+    if (count($resultados) > 0) { //(si se encontraron estudiantes entonces procede con los siguiente)
 
-     
+     //el" "th" es el table header o sea el encabezado que se le aplico estilo en el <style>. Y "td" o Table Data es el resto de la tabla de datos.
         echo "<table>";
         echo "<tr>
                 <th>ID</th>
@@ -61,7 +68,7 @@ if ($curso != "") {
                 <th>Curso</th>
                 <th>Nota</th>
               </tr>";
-
+              //aqui no importa si cambio el nombre de los "th" porque solo son etiquetas visibles para el usuario.
      
         for ($i = 0; $i < count($resultados); $i++) {
 
@@ -80,12 +87,14 @@ if ($curso != "") {
             echo "<td>".$fila['curso']."</td>";
             echo "<td class='$clase'>".$fila['nota']."</td>";
             echo "</tr>";
+            //aqui los "td" tienen que tener el nombre exacto que esta en la base de datos.
         }
 
   
         echo "</table>";
 
     } else {
+        //si no hay estudiantes
         echo "<p style='text-align:center;'>No se encontraron estudiantes para este curso.</p>";
     }
 
