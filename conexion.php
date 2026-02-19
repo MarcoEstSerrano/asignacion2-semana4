@@ -13,8 +13,4 @@ try {
 } catch (PDOException $e) {
     die("Error de conexión: " . $e->getMessage());
 }
-
-// aqui se CAPTURA EL GET Y CONSULTA WHERE ---
-// Capturamos el parámetro 'curso' de la URL [cite: 39, 41]
-$curso_buscado = isset($_GET['curso']) ? $_GET['curso'] : '';
 ?>
