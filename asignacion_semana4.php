@@ -31,6 +31,7 @@ th { background-color: #e0e0e0; }
 </style>
 
 </head>
+
 <body>
 
 <h1 style="text-align:center;">Lista de Estudiantes</h1>
@@ -38,6 +39,8 @@ th { background-color: #e0e0e0; }
 <?php
 
 $curso = $_GET['curso'] ?? "";
+
+//??: Es un "operador de fusión de nulo". Si no hay nada en la URL, le asigna un texto vacío para evitar que el programa de un error.
 
 if ($curso != "") {
 
@@ -47,10 +50,10 @@ if ($curso != "") {
 
     $resultados = $stmt->fetchAll();
 
-    // 🔴 IMPORTANTE: verificar si hay datos
+
     if (count($resultados) > 0) {
 
-        // 🔴 AQUÍ VA LA TABLA (ANTES DEL for)
+     
         echo "<table>";
         echo "<tr>
                 <th>ID</th>
@@ -59,12 +62,12 @@ if ($curso != "") {
                 <th>Nota</th>
               </tr>";
 
-        // 🔵 for normal
+     
         for ($i = 0; $i < count($resultados); $i++) {
 
             $fila = $resultados[$i];
 
-            // color según la nota
+        
             if ($fila['nota'] >= 70) {
                 $clase = "aprobado";
             } else {
@@ -79,7 +82,7 @@ if ($curso != "") {
             echo "</tr>";
         }
 
-        // 🔴 Cerrar tabla
+  
         echo "</table>";
 
     } else {
