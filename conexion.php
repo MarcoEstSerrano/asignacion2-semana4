@@ -1,5 +1,4 @@
 <?php
-// --- CONFIGURACIÓN DE CONEXIÓN (Basada en tu ejemplo) ---
 $host = 'localhost';
 $db   = 'Universidad'; 
 $user = 'root';
